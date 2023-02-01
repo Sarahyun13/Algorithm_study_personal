@@ -1,7 +1,7 @@
-// ±×·¡ÇÁ Å½»ö - ±íÀÌ ¿ì¼± Å½»ö(DFS: depth first search)
-// ½ÃÀÛ Á¤Á¡¿¡¼­ ÇÑ ¹æÇâÀ¸·Î °è¼Ó ³»·Á °¡´Ù°¡ ´õ ÀÌ»ó °¥ ¼ö ¾ø°Ô µÇ¸é ´Ù½Ã °¡Àå °¡±î¿î °¥¸²±æ·Î ¿Ã¶ó¿Í¼­ ´Ù¸¥ ¹æÇâÀ¸·Î ³»·Á°¡¸ç Å½»ö ÁøÇà
-// ¸ðµç ³ëµå¸¦ ¹æ¹®ÇØ¾ß ÇÏ´Â °æ¿ì¿¡ »ç¿ë
-// ½ºÅÃ(Stack) ¶Ç´Â Àç±ÍÇÔ¼ö¸¦ ÀÌ¿ëÇÏ¿© ±¸Çö
+// ê·¸ëž˜í”„ íƒìƒ‰ - ê¹Šì´ ìš°ì„  íƒìƒ‰(DFS: Depth First Search)
+// ì‹œìž‘ ì •ì ì—ì„œ í•œ ë°©í–¥ìœ¼ë¡œ ê³„ì† ë‚´ë ¤ ê°€ë‹¤ê°€ ë” ì´ìƒ ê°ˆ ìˆ˜ ì—†ê²Œ ë˜ë©´ ë‹¤ì‹œ ê°€ìž¥ ê°€ê¹Œìš´ ê°ˆë¦¼ê¸¸ë¡œ ì˜¬ë¼ì™€ì„œ ë‹¤ë¥¸ ë°©í–¥ìœ¼ë¡œ ë‚´ë ¤ê°€ë©° íƒìƒ‰ ì§„í–‰
+// ëª¨ë“  ë…¸ë“œë¥¼ ë°©ë¬¸í•´ì•¼ í•˜ëŠ” ê²½ìš°ì— ì‚¬ìš©
+// ìŠ¤íƒ(Stack) ë˜ëŠ” ìž¬ê·€í•¨ìˆ˜ë¥¼ ì´ìš©í•˜ì—¬ êµ¬í˜„
 
 #include <iostream>
 #include <vector>
@@ -12,42 +12,42 @@
 using namespace std;
 
 vector <int> graph[MAX_SIZE];
-bool visit[MAX_SIZE]; // Àü¿ªÀ¸·Î ¼±¾îÇÏ¸é false·Î ÀÚµ¿ ÃÊ±âÈ­
+bool visit[MAX_SIZE]; // ì „ì—­ìœ¼ë¡œ ì„ ì–´í•˜ë©´ falseë¡œ ìžë™ ì´ˆê¸°í™”
 
-// Stack »ç¿ë
-// 1. ½ÃÀÛ ³ëµå¸¦ Stack¿¡ »ðÀÔÇÏ°í visit[½ÃÀÛ] = true ·Î ¹æ¹® Ã³¸®
-// 2. StackÀÇ ÃÖ»ó´Ü ³ëµå topÀ» ÇöÀç ³ëµå º¯¼ö¿¡ ÀúÀåÇÏ°í pop() ÇÏ°í ¹æ¹® Ã³¸®
-// 3. StackÀÇ ÇöÀç ³ëµå¿¡ ¹æ¹®ÇÏÁö ¾ÊÀº ÀÎÁ¢ ³ëµå°¡ ÀÖ´Ù¸é Stack¿¡ »ðÀÔ
-// 4. StackÀÌ ºô ¶§±îÁö ¹Ýº¹
+// Stack ì‚¬ìš©
+// 1. ì‹œìž‘ ë…¸ë“œë¥¼ Stackì— ì‚½ìž…í•˜ê³  visit[ì‹œìž‘] = true ë¡œ ë°©ë¬¸ ì²˜ë¦¬
+// 2. Stackì˜ ìµœìƒë‹¨ ë…¸ë“œ topì„ í˜„ìž¬ ë…¸ë“œ ë³€ìˆ˜ì— ì €ìž¥í•˜ê³  pop() í•˜ê³  ë°©ë¬¸ ì²˜ë¦¬
+// 3. Stackì˜ í˜„ìž¬ ë…¸ë“œì— ë°©ë¬¸í•˜ì§€ ì•Šì€ ì¸ì ‘ ë…¸ë“œê°€ ìžˆë‹¤ë©´ Stackì— ì‚½ìž…
+// 4. Stackì´ ë¹Œ ë•Œê¹Œì§€ ë°˜ë³µ
 void dfs1(int start) {
 	stack<int> st;
 
-	st.push(start); // Stack¿¡ »ðÀÔ
-	while (!st.empty()) { // ¾ÆÁ÷ Stack¿¡ ³ëµå°¡ ÀÖ´Ù¸é
-		int now = st.top(); // ÃÖ»ó´Ü ³ëµå ÇöÀç º¯¼ö¿¡ ÀúÀå
-		st.pop(); // Stack¿¡¼­ Á¦°Å
+	st.push(start); // Stackì— ì‚½ìž…
+	while (!st.empty()) { // ì•„ì§ Stackì— ë…¸ë“œê°€ ìžˆë‹¤ë©´
+		int now = st.top(); // ìµœìƒë‹¨ ë…¸ë“œ í˜„ìž¬ ë³€ìˆ˜ì— ì €ìž¥
+		st.pop(); // Stackì—ì„œ ì œê±°
 
-		if (!visit[now]) { // ¹æ¹®ÇÏÁö ¾ÊÀº ³ëµå¶ó¸é
+		if (!visit[now]) { // ë°©ë¬¸í•˜ì§€ ì•Šì€ ë…¸ë“œë¼ë©´
 			cout << now << " ";
-			visit[now] = true; // ¹æ¹® Ã³¸®
+			visit[now] = true; // ë°©ë¬¸ ì²˜ë¦¬
 
 			for (int i = 0; i < graph[now].size(); i++) {
-				st.push(graph[now][i]); // ÀÎÁ¢ ³ëµåµé Stack¿¡ »ðÀÔ
+				st.push(graph[now][i]); // ì¸ì ‘ ë…¸ë“œë“¤ Stackì— ì‚½ìž…
 			}
 		}
 	}
 }
 
-// Àç±ÍÇÔ¼ö »ç¿ë
-// 1. ÇöÀç ³ëµå ¹æ¹® Ã³¸®
-// 2. ÇöÀç ³ëµå¿Í ÀÎÁ¢ÇÑ ³ëµåµé Áß ¹æ¹®ÇÑ Àû ¾ø´Â ³ëµå°¡ ÀÖ´Ù¸é Àç±Í È£Ãâ
+// ìž¬ê·€í•¨ìˆ˜ ì‚¬ìš©
+// 1. í˜„ìž¬ ë…¸ë“œ ë°©ë¬¸ ì²˜ë¦¬
+// 2. í˜„ìž¬ ë…¸ë“œì™€ ì¸ì ‘í•œ ë…¸ë“œë“¤ ì¤‘ ë°©ë¬¸í•œ ì  ì—†ëŠ” ë…¸ë“œê°€ ìžˆë‹¤ë©´ ìž¬ê·€ í˜¸ì¶œ
 void dfs2(int start) {
-	visit[start] = true; // ¹æ¹® Ç¥½Ã
+	visit[start] = true; // ë°©ë¬¸ í‘œì‹œ
 	cout << start << " ";
 
 	for (int i = 0; i < graph[start].size(); i++) {
 		int next = graph[start][i];
-		if(!visit[next]) dfs2(next); // ¹æ¹®ÇÑ Àû ¾ø´Â ³ëµå¶ó¸é Àç±Í È£Ãâ
+		if(!visit[next]) dfs2(next); // ë°©ë¬¸í•œ ì  ì—†ëŠ” ë…¸ë“œë¼ë©´ ìž¬ê·€ í˜¸ì¶œ
 	}
 }
 
