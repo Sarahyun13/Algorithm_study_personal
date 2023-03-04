@@ -12,7 +12,7 @@
 using namespace std;
 
 vector <int> graph[MAX_SIZE];
-bool visit[MAX_SIZE]; // 전역으로 언언하면 false로 자동 초기화
+bool visit[MAX_SIZE]; // 전역으로 선언하면 false로 자동 초기화
 
 // Stack 사용
 // 1. 시작 노드를 Stack에 삽입하고 visit[시작] = true 로 방문 처리
