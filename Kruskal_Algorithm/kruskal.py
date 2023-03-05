@@ -28,14 +28,14 @@ def find(parent, x):
 # 두 원소가 속한 집합 합치기
 # 최소 신장 트리에 포함시키기
 def union(parent, a, b):
-    rootA = find(parent, a) # 노드 a의 부모 노드
-    rootB = find(parent, b) # 노드 b의 부모 노드
+    a = find(parent, a) # 노드 a의 부모 노드
+    b = find(parent, b) # 노드 b의 부모 노드
 
     # 더 작은 숫자를 가진 부모노드로 합치기
-    if rootA < rootB:
-        parent[rootB] = rootA
+    if a < b:
+        parent[b] = a
     else:
-        parent[rootA] = rootB
+        parent[a] = b
 
 # kruskal 알고리즘
 def kruskal():
