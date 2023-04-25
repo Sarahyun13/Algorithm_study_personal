@@ -20,6 +20,20 @@ def recursiveDfs(graph, start, visited):
 # 3. Stack의 현재 노드에 방문하지 않은 인접 노드가 있다면 Stack에 삽입
 # 4. Stack이 빌 때까지 반복
 def stackDfs(graph, start, visited):
+    stack = []
+    stack.append(start)
+    visited[start] = True
+
+    while stack:
+        cur = stack.pop()
+        print(cur, end=" ")
+
+        for next in graph[cur]:
+            if not visited[next]:
+                stack.append(next)
+                visited[next] = True
+
+def stackDfs2(graph, start, visited):
     stack = [start] # Stack에 삽입
     
     while stack: # 아직 Stack에 노드가 있다면
@@ -30,4 +44,3 @@ def stackDfs(graph, start, visited):
             visited[cur] = True # 방문 처리
             for next in graph[cur]:
                 stack.append(next) # 인접 노드들 Stack에 삽입
-
