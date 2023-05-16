@@ -56,4 +56,4 @@ for _ in range(M):
     graph[v1].append(v2)
     graph[v2].append(v1)
 
-visited = [0] * (N + 1)
+visited = [False] * (N + 1)
