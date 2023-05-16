@@ -21,3 +21,15 @@ def bfs(graph, start, visited):
             if not visited[next]: # 방문하지 않은 노드라면
                 queue.append(next) # 큐에 삽입
                 visited[next] = True # 방문 처리
+
+
+N, M, V = map(int, input().split())
+
+graph = [[] for _ in range(N + 1)]
+
+for _ in range(M):
+    v1, v2 = map(int, input().split())
+    graph[v1].append(v2)
+    graph[v2].append(v1)
+
+visited = [0] * (N + 1)
