@@ -2,6 +2,7 @@
 # 시작 정점에서 한 방향으로 계속 내려 가다가 더 이상 갈 수 없게 되면 다시 가장 가까운 갈림길로 올라와서 다른 방향으로 내려가며 탐색 진행
 # 모든 노드를 방문해야 하는 경우에 사용
 # 스택(Stack) 또는 재귀함수를 이용하여 구현
+# 대부분 재귀로 구현
 
 # 재귀함수 사용
 # 1. 현재 노드 방문 처리
@@ -44,3 +45,15 @@ def stackDfs2(graph, start, visited):
             visited[cur] = True # 방문 처리
             for next in graph[cur]:
                 stack.append(next) # 인접 노드들 Stack에 삽입
+
+
+N, M, V = map(int, input().split())
+
+graph = [[] for _ in range(N + 1)]
+
+for _ in range(M):
+    v1, v2 = map(int, input().split())
+    graph[v1].append(v2)
+    graph[v2].append(v1)
+
+visited = [0] * (N + 1)
