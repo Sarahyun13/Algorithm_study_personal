@@ -26,3 +26,6 @@ for i in range(1, N + 1):
     second = set()
     if i not in answer:
         dfs(first, second, i)
+
+print(len(answer))
+print(*sorted(list(answer)), sep="\n")
