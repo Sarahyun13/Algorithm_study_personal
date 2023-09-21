@@ -29,7 +29,20 @@ nums = list(map(int, input().split()))
 # gcd 함수로 최대공약수를 먼저 구한다.
 g = gcd(nums[0], gcd(nums[1], nums[-1]))
 # 최대공약수의 약수를 구하면 모든 공약수를 구할 수 있다.
-for i in range(1, (g // 2) + 1):
+# 약수는 그 수의 제곱근 이하의 수들만 나누어 떨어지는지 확인하면 된다.
+answer = []
+for i in range(1, int(g ** (1 / 2)) + 1):
     if g % i == 0:
-        print(i)
-print(g)
+        answer.append(i)
+        if i != (g // i):  # 제곱근이라면 중복되지 않게
+            answer.append(g // i)
+
+# 2로 나눈 수까지만 확인하는 방법도 있음
+# 하지만 제곱근 방식이 시간 효율성 최고
+# for i in range(1, (g // 2) + 1):
+#     if g % i == 0:
+#         print(i)
+
+answer.sort()  # 오름차순으로 정렬
+for ans in answer:
+    print(ans)
