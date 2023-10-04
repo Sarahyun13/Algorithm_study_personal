@@ -7,14 +7,17 @@ target = int(input())
 
 board = [[0] * N for _ in range(N)]
 
+# 방향 벡터
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
+di = 0  # 방향 인덱스
 
-count = 1  # 같은 방향에서 몇 개를 채우는지 저장하는 변수
-di = 0
+# 첫 시작 가운데 1로 채우기
 x, y = N // 2, N // 2
 n = 1
-board[x][y] = n  # 첫 시작
+board[x][y] = n
+
+count = 1  # 같은 방향에서 몇 개를 채우는지 저장하는 변수
 n += 1
 while count <= N - 1:
     if count < N - 1:
