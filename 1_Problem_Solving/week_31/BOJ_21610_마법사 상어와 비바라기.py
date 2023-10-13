@@ -15,8 +15,9 @@ for _ in range(M):
     rainList = deque()
     for _ in range(len(cloudList)):
         x, y = cloudList.popleft()  # 이동시키면서 구름리스트에서 구름은 사라진다
-        nx = x + N + (dx[d] * s)
-        ny = y + N + (dx[d] * s)
+        nx = (N + x + dx[d] * (s % N)) % N
+        ny = (N + y + dy[d] * (s % N)) % N
+        # print(nx, ny)
         rainList.append((nx, ny))  # 모든 구름이 d 방향으로 s칸 이동하고, 비리스트에 저장한다.
         buckets[nx][ny] += 1  # 구름에서 비가 내려 구름이 있는 칸의 바구니에 물이 1 증가한다.
 
