@@ -4,16 +4,18 @@
 # 스택(Stack) 또는 재귀함수를 이용하여 구현
 # 대부분 재귀로 구현
 
+
 # 재귀함수 사용
 # 1. 현재 노드 방문 처리
 # 2. 현재 노드와 인접한 노드들 중 방문한 적 없는 노드가 있다면 재귀 호출
 def recursiveDfs(graph, start, visited):
-    visited[start] = True # 방문 표시
-    print(start, end = " ")
+    visited[start] = True  # 방문 표시
+    print(start, end=" ")
 
     for next in graph[start]:
-        if not visited[next]: # 방문한 적 없는 노드라면
-            recursiveDfs(graph, next, visited) # 재귀 호출
+        if not visited[next]:  # 방문한 적 없는 노드라면
+            recursiveDfs(graph, next, visited)  # 재귀 호출
+
 
 # Stack 사용
 # 1. 시작 노드를 Stack에 삽입하고 visit[시작] = true 로 방문 처리
@@ -34,17 +36,18 @@ def stackDfs(graph, start, visited):
                 stack.append(next)
                 visited[next] = True
 
-def stackDfs2(graph, start, visited):
-    stack = [start] # Stack에 삽입
-    
-    while stack: # 아직 Stack에 노드가 있다면
-        cur = stack.pop() # 최상단 노드 현재 변수에 저장하고 Stack에서 제거
 
-        if not visited[cur]: # 방문하지 않은 노드라면
-            print(cur, end = " ")
-            visited[cur] = True # 방문 처리
+def stackDfs2(graph, start, visited):
+    stack = [start]  # Stack에 삽입
+
+    while stack:  # 아직 Stack에 노드가 있다면
+        cur = stack.pop()  # 최상단 노드 현재 변수에 저장하고 Stack에서 제거
+
+        if not visited[cur]:  # 방문하지 않은 노드라면
+            print(cur, end=" ")
+            visited[cur] = True  # 방문 처리
             for next in graph[cur]:
-                stack.append(next) # 인접 노드들 Stack에 삽입
+                stack.append(next)  # 인접 노드들 Stack에 삽입
 
 
 N, M, V = map(int, input().split())
