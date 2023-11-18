@@ -31,7 +31,7 @@ for _ in range(M):
     graph[a].append((t, b))
     graph[b].append((t, a))
 
-INF = sys.maxsize
+INF = sys.maxsize  # 1e9로 설정하면 너무 작아서 오류 남....
 distance = [INF] * (N)
 dijkstra(0)
 if distance[N - 1] == INF:
