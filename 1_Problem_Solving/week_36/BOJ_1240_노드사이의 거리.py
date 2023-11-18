@@ -22,7 +22,7 @@ def bfs(a, b):
 
 
 N, M = map(int, input().split())
-tree = [[] * (N + 1) for _ in range(N + 1)]
+tree = [[] for _ in range(N + 1)]
 for _ in range(N - 1):
     a, b, dist = map(int, input().split())
     tree[a].append((b, dist))
