@@ -31,7 +31,11 @@ for _ in range(M):
     graph[a].append((t, b))
     graph[b].append((t, a))
 
-INF = sys.maxsize  # 1e9로 설정하면 너무 작아서 오류 남....
+# 1e9로 설정하면 너무 작아서 틀림....
+# 문제 조건 잘 보기! -> 문제에 t <= 100,000, N <= 100,000 이라 돼있으므로
+# 최대 시간으로 모든 분기점을 지날 경우 t*N 값이 나올 수 있다.
+# 따라서, 최소 t*N+1 이상으로 잡아야 함.
+INF = sys.maxsize
 distance = [INF] * (N)
 dijkstra(0)
 if distance[N - 1] == INF:
