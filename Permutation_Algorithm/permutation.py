@@ -62,9 +62,8 @@ def permutations_dfs(arr, r):
                 visited[i] = False
                 curList.pop()
 
+    result = []
+    visited = [False] * len(arr)
+    dfs([])
 
-        result = []
-        visited = [False] * len(arr)
-        dfs([])
-
-        return result
+    return result
