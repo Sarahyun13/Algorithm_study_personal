@@ -31,6 +31,7 @@ def permutations_with_repetition_dfs(items, r):
             return
 
         # 모든 원소에 대해 중복을 허용하며 순열 생성
+        # 순서에 따라 달라지므로 모든 원소에 대해 중복을 허용하면서 재귀를 진행
         for elem in items:
             result.append(elem)
             dfs(result)
