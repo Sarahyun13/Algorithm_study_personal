@@ -2,4 +2,4 @@ import sys
 
 input = sys.stdin.readline
 
-N = int(input())
+N, K = map(int, input().split())
